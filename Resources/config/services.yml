@@ -2,3 +2,7 @@ services:
 #    mjmc_crud.example:
 #        class: MJMC\Bundle\CrudBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    mjmc_crud.responseFactory:
+        class: MJMC\Bundle\CrudBundle\Service\ResponseFactory
+        arguments: ["@translator", "@request_stack"]

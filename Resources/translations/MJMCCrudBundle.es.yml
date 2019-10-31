@@ -1,0 +1,6 @@
+response:
+    messages:
+        400: '400 - spanish'
+        403: '403 - spanish'
+        404: '404 - spanish'
+        405: '405 - spanish'
