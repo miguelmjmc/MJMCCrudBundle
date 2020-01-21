@@ -137,7 +137,7 @@ class CrudController extends Controller
 
         if ('POST' !== $request->getMethod()) {
 
-            $entity = $this->getDoctrine()->getRepository($entityNamespace.$entityName)->find($request->get('id'));
+            $entity = $this->getDoctrine()->getRepository('AppBundle/Entity/'.$entityName)->find($request->get('id'));
         }
 
 
@@ -159,7 +159,7 @@ class CrudController extends Controller
 
 
 
-        
+
         if ($form->isSubmitted()) {
             $crudUtils->log('info', 'Form submitted successfully. Checking validation...');
 
