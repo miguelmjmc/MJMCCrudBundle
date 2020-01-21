@@ -127,6 +127,26 @@ class CrudController extends Controller
             throw new Exception('User not granted.');
         }
 
+
+
+
+
+
+
+
+
+        if ('POST' !== $request->getMethod()) {
+
+            $entity = $this->getDoctrine()->getRepository($entityNamespace.$entityName)->find($request->get('id'));
+        }
+
+
+
+
+
+
+
+
         /** @var FormInterface $form */
         $form = $crudUtils->getForm($entity, $request);
 
@@ -136,6 +156,10 @@ class CrudController extends Controller
 
         return $form;
 
+
+
+
+        
         if ($form->isSubmitted()) {
             $crudUtils->log('info', 'Form submitted successfully. Checking validation...');
 

@@ -327,6 +327,19 @@ class CrudUtils
      */
     public function getForm(CrudInterface $entity, Request $request): FormInterface
     {
+        $parameters = array('method' => $request->getMethod());
+
+        if ('GET' === $request->getMethod() || 'DELETE' === $request->getMethod()) {
+            $parameters['attr'] = array('readonly' => true);
+        }
+
+
+
+
+
+
+
+
         /** @var ReflectionClass $entityReflectionClass */
         $entityReflectionClass = new ReflectionClass($entity);
 
@@ -420,7 +433,7 @@ class CrudUtils
 
             if ($formReflectionClass->implementsInterface(FormTypeInterface::class)) {
                 /** @var FormInterface $form */
-                $form = $this->formFactory->create($formTypeClass, $entity);
+                $form = $this->formFactory->create($formTypeClass, $entity, $parameters);
 
                 $this->log('info', 'FormType "' . $formTypeClass . '" built successfully.');
 
