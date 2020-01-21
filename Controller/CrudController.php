@@ -27,14 +27,16 @@ class CrudController extends Controller
 
         $crudUtils->log('info', 'MJMCCrudBundle initialized');
 
+        /*
         if (!$crudUtils->isValidMethod($request, 'POST')) {
-            /**
+
              *
              *
              *
-             */
+             *
             throw new Exception('Method no valid.');
         }
+        */
 
         $entityName = $request->get('entityName', null);
 
