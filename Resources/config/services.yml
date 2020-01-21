@@ -3,6 +3,12 @@ services:
 #        class: MJMC\Bundle\CrudBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
 
-    mjmc_crud.responseFactory:
-        class: MJMC\Bundle\CrudBundle\Service\ResponseFactory
-        arguments: ["@translator", "@request_stack"]
+    mjmc_crud.logger:
+        class: MJMC\Bundle\CrudBundle\Service\Logger
+        arguments: ["@logger"]
+        tags:
+                - { name: monolog.logger, channel: MJMCCrudBundle }
+
+    mjmc_crud.crud_utils:
+      class: MJMC\Bundle\CrudBundle\Service\CrudUtils
+      arguments: ["@service_container", "@doctrine.orm.entity_manager", "@form.factory", "@kernel", "@mjmc_crud.logger"]

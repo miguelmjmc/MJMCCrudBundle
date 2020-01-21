@@ -8,105 +8,114 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 abstract class AbstractCrud implements CrudInterface
 {
-    public function isAllowedPostMethod(): Bool
+    public static function crudBundle_isReadOnlyEntity(): Bool
     {
-        // TODO: Implement isAllowedPostMethod() method.
+        // TODO: Implement crudBundle_isReadOnlyEntity() method.
 
-        return true;
+        return false;
     }
 
-    public function responseNotAllowedPostMethod(ContainerInterface $container): ?Response
+    public static function crudBundle_customResponse_readOnlyEntity(ContainerInterface $container): ?Response
     {
-        // TODO: Implement notAllowedPostMethodResponse() method.
+        // TODO: Implement crudBundle_customResponse_readOnlyEntity() method.
 
         return null;
     }
 
-    public function isAllowedGetMethod(): Bool
+    public static function crudBundle_isMethodAllowed_GET(): Bool
     {
-        // TODO: Implement isAllowedGetMethod() method.
+        // TODO: Implement crudBundle_isMethodAllowed_GET() method.
 
         return true;
     }
 
-    public function responseNotAllowedGetMethod(ContainerInterface $container): ?Response
+    public static function crudBundle_isMethodAllowed_POST(): Bool
     {
-        // TODO: Implement notAllowedGetMethodResponse() method.
+        // TODO: Implement crudBundle_isMethodAllowed_POST() method.
+
+        return true;
+    }
+
+    public static function crudBundle_isMethodAllowed_PUT(): Bool
+    {
+        // TODO: Implement crudBundle_isMethodAllowed_PUT() method.
+
+        return true;
+    }
+
+    public static function crudBundle_isMethodAllowed_PATCH(): Bool
+    {
+        // TODO: Implement crudBundle_isMethodAllowed_PATCH() method.
+
+        return true;
+    }
+
+    public static function crudBundle_isMethodAllowed_DELETE(): Bool
+    {
+        // TODO: Implement crudBundle_isMethodAllowed_DELETE() method.
+
+        return true;
+    }
+
+    public static function crudBundle_customResponse_methodNotAllowed(ContainerInterface $container): ?Response
+    {
+        // TODO: Implement crudBundle_customResponse_methodNotAllowed() method.
 
         return null;
     }
 
-    public function isAllowedPutMethod(): Bool
-    {
-        // TODO: Implement isAllowedPutMethod() method.
+    public static function crudBundle_isUserGranted(
+        AuthorizationCheckerInterface $authorizationChecker,
+        $user,
+        Request $request,
+        ContainerInterface $container
+    ): bool {
+        // TODO: Implement crudBundle_isUserGranted() method.
 
         return true;
     }
 
-    public function responseNotAllowedPutMethod(ContainerInterface $container): ?Response
+    public static function crudBundle_customResponse_userNotGranted(ContainerInterface $container): ?Response
     {
-        // TODO: Implement responseNotAllowedPutMethod() method.
+        // TODO: Implement crudBundle_customResponse_userNotGranted() method.
 
         return null;
     }
 
-    public function isAllowedPatchMethod(): Bool
-    {
-        // TODO: Implement isAllowedPatchMethod() method.
-
-        return true;
-    }
-
-    public function responseNotAllowedPatchMethod(ContainerInterface $container): ?Response
-    {
-        // TODO: Implement responseNotAllowedPatchMethod() method.
+    public static function crudBundle_getForm(
+        FormFactoryInterface $formFactory,
+        $entity,
+        Request $request,
+        ContainerInterface $container
+    ): ?FormInterface {
+        // TODO: Implement crudBundle_getForm() method.
 
         return null;
     }
 
-    public function isAllowedDeleteMethod(): Bool
+    public static function crudBundle_getFormType(Request $request, ContainerInterface $container): ?string
     {
-        // TODO: Implement isAllowedDeleteMethod() method.
-
-        return true;
-    }
-
-    public function responseNotAllowedDeleteMethod(ContainerInterface $container): ?Response
-    {
-        // TODO: Implement responseNotAllowedDeleteMethod() method.
+        // TODO: Implement crudBundle_getFormType() method.
 
         return null;
     }
 
-    public function isCreatable(object $entity, ContainerInterface $container): Bool
+    public static function crudBundle_compatibility_MJMCFormAnnotationBundle(): ?bool
     {
-        // TODO: Implement isCreatable() method.
+        // TODO: Implement crudBundle_compatibility_MJMCFormAnnotationBundle() method.
 
         return true;
     }
 
-    public function isReadable(object $entity, ContainerInterface $container): Bool
+    public static function crudBundle_priority_MJMCFormAnnotationBundle(): ?bool
     {
-        // TODO: Implement isReadable() method.
+        // TODO: Implement crudBundle_priority_MJMCFormAnnotationBundle() method.
 
-        return true;
-    }
-
-    public function isUpdatable(object $entity, ContainerInterface $container): Bool
-    {
-        // TODO: Implement isUpdatable() method.
-
-        return true;
-    }
-
-    public function isDeletable(object $entity, ContainerInterface $container): Bool
-    {
-        // TODO: Implement isDeletable() method.
-
-        return true;
+        return false;
     }
 }

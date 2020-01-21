@@ -15,138 +15,99 @@ interface CrudInterface
     /**
      * @return bool
      */
-    public function isAllowedPostMethod(): Bool;
+    public static function crudBundle_isReadOnlyEntity(): Bool;
 
     /**
      * @param ContainerInterface $container
      *
      * @return Response|null
      */
-    public function responseNotAllowedPostMethod(ContainerInterface $container): ?Response;
+    public static function crudBundle_customResponse_readOnlyEntity(ContainerInterface $container): ?Response;
 
     /**
      * @return bool
      */
-    public function isAllowedGetMethod(): Bool;
-
-    /**
-     * @param ContainerInterface $container
-     *
-     * @return Response|null
-     */
-    public function responseNotAllowedGetMethod(ContainerInterface $container): ?Response;
+    public static function crudBundle_isMethodAllowed_POST(): Bool;
 
     /**
      * @return bool
      */
-    public function isAllowedPutMethod(): Bool;
-
-    /**
-     * @param ContainerInterface $container
-     *
-     * @return Response|null
-     */
-    public function responseNotAllowedPutMethod(ContainerInterface $container): ?Response;
-    /**
-     * @return bool
-     */
-    public function isAllowedPatchMethod(): Bool;
-
-    /**
-     * @param ContainerInterface $container
-     *
-     * @return Response|null
-     */
-    public function responseNotAllowedPatchMethod(ContainerInterface $container): ?Response;
+    public static function crudBundle_isMethodAllowed_GET(): Bool;
 
     /**
      * @return bool
      */
-    public function isAllowedDeleteMethod(): Bool;
+    public static function crudBundle_isMethodAllowed_PUT(): Bool;
+
+    /**
+     * @return bool
+     */
+    public static function crudBundle_isMethodAllowed_PATCH(): Bool;
+
+    /**
+     * @return bool
+     */
+    public static function crudBundle_isMethodAllowed_DELETE(): Bool;
 
     /**
      * @param ContainerInterface $container
      *
      * @return Response|null
      */
-    public function responseNotAllowedDeleteMethod(ContainerInterface $container): ?Response;
+    public static function crudBundle_customResponse_methodNotAllowed(ContainerInterface $container): ?Response;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
+    /**
      * @param AuthorizationCheckerInterface $authorizationChecker
-     * @param object $user
+     * @param object|null $user
      * @param Request $request
      * @param ContainerInterface $container
      *
      * @return bool
-     *
-    public function isAllowedUser(AuthorizationCheckerInterface $authorizationChecker, object $user = null, Request $request, ContainerInterface $container): bool;
+     */
+    public static function crudBundle_isUserGranted(
+        AuthorizationCheckerInterface $authorizationChecker,
+        $user,
+        Request $request,
+        ContainerInterface $container
+    ): bool;
 
     /**
      * @param ContainerInterface $container
      *
      * @return Response|null
-     *
-    public function notAllowedUserResponse(ContainerInterface $container): ?Response;
-    */
+     */
+    public static function crudBundle_customResponse_userNotGranted(ContainerInterface $container): ?Response;
 
     /**
-     * @param object $entity
-     * @param ContainerInterface $container
-     *
-     * @return bool
-     */
-    public function isCreatable(object $entity, ContainerInterface $container): Bool;
-
-    /**
-     * @param object $entity
-     * @param ContainerInterface $container
-     *
-     * @return bool
-     */
-    public function isReadable(object $entity, ContainerInterface $container): Bool;
-
-    /**
-     * @param object $entity
-     * @param ContainerInterface $container
-     *
-     * @return bool
-     */
-    public function isUpdatable(object $entity, ContainerInterface $container): Bool;
-
-    /**
-     * @param object $entity
-     * @param ContainerInterface $container
-     *
-     * @return bool
-     */
-    public function isDeletable(object $entity, ContainerInterface $container): Bool;
-
-
-    /*
      * @param FormFactoryInterface $formFactory
-     * @param object $entity
+     * @param object|null $entity
      * @param Request $request
      * @param ContainerInterface $container
      *
      * @return FormInterface|null
-     *
-    public function getForm(FormFactoryInterface $formFactory, object $entity, Request $request, ContainerInterface $container): ?FormInterface;
-    */
+     */
+    public static function crudBundle_getForm(
+        FormFactoryInterface $formFactory,
+        $entity,
+        Request $request,
+        ContainerInterface $container
+    ): ?FormInterface;
 
-    public function getView(Request $request, FormInterface $form, RouterInterface $router): Response;
+    /**
+     * @param Request $request
+     * @param ContainerInterface $container
+     *
+     * @return string|null
+     */
+    public static function crudBundle_getFormType(Request $request, ContainerInterface $container): ?string;
+
+    /**
+     * @return bool
+     */
+    public static function crudBundle_compatibility_MJMCFormAnnotationBundle(): ?bool;
+
+    /**
+     * @return bool
+     */
+    public static function crudBundle_priority_MJMCFormAnnotationBundle(): ?bool;
 }
