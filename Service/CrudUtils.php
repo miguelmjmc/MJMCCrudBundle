@@ -227,17 +227,18 @@ class CrudUtils
     /**
      * @param string $formTypeClass
      * @param object|null $entity
+     * @param array $options
      *
      * @return FormInterface
      *
      * @throws Exception
      */
-    public function buildForm(string $formTypeClass, object $entity = null): FormInterface
+    public function buildForm(string $formTypeClass, object $entity = null, array $options = array()): FormInterface
     {
         if ($this->classExist($formTypeClass)) {
             if ($this->implement($formTypeClass, FormTypeInterface::class)) {
                 /** @var FormInterface $form */
-                $form = $this->formFactory->create($formTypeClass, $entity);
+                $form = $this->formFactory->create($formTypeClass, $entity, $options);
 
                 $this->log('info', 'FormType "' . $formTypeClass . '" built successfully.');
 
@@ -398,7 +399,7 @@ class CrudUtils
                 'No form or formType was provided, "' . $formTypeClass . '" used as default formType. Building form...'
             );
 
-            return $this->buildForm($formTypeClass, $entity);
+            return $this->buildForm($formTypeClass, $entity, $parameters);
         }
 
         $this->log('info', '"MJMCFormAnnotationBundle" is installed. Checking priority...');
@@ -433,7 +434,7 @@ class CrudUtils
 
             if ($formReflectionClass->implementsInterface(FormTypeInterface::class)) {
                 /** @var FormInterface $form */
-                $form = $this->formFactory->create($formTypeClass, $entity, $parameters);
+                $form = $this->formFactory->create($formTypeClass, $entity);
 
                 $this->log('info', 'FormType "' . $formTypeClass . '" built successfully.');
 
