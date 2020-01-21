@@ -275,6 +275,8 @@ class CrudController extends Controller
                 $entityManager->remove($form->getData());
             }
 
+            $entityManager->flush();
+
             return new Response('success');
         }
 
