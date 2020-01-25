@@ -138,6 +138,8 @@ class CrudController extends Controller
         if ('POST' !== $request->getMethod()) {
 
             $entity = $this->getDoctrine()->getRepository('AppBundle\Entity\\'.$entityName)->find($request->get('id'));
+        } else {
+            $entity = (new \ReflectionClass($entity))->newInstance();
         }
 
 
