@@ -303,9 +303,13 @@ class CrudController extends Controller
                 $entityManager->remove($form->getData());
             }
 
-            $entityManager->flush();
+            try {
+                $entityManager->flush();
 
-            return new Response('success');
+                return new Response('success');
+            } catch (\Exception $exception) {
+                return new Response('error');
+            }
         }
 
         $rc = new \ReflectionClass($form->getData());
